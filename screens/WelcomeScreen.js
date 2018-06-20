@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import Slides from '../components/Slides';
 
 const SLIDE_DATA = [
-    { text: 'Welcome to Job App!', color: '#03a9f4' },
+    { text: 'Welcome to Jobs App!', color: '#03a9f4' },
     { text: 'Use this to get a Job!', color: '#009688' },
     { text: 'Set your location, then swipe away!', color: '#03a9f4' }
 ];
