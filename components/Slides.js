@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     },
     slideStyle: {
         width: SCREEN_WIDTH,
-        height: SCREEN_HEIGHT - 25,
+        height: SCREEN_HEIGHT,
         justifyContent: 'center',
         alignItems: 'center'
     },

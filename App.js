@@ -34,4 +34,10 @@ const RootStack = createBottomTabNavigator({
       })
     })
   }
-});
+}, {
+    lazy: true,
+    navigationOptions: {
+      tabBarVisible: false
+    }
+  }
+);
