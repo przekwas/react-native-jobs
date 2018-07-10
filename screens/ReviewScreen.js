@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Platform } from 'react-native';
-import { Button } from 'react-native-elements';
+import { StyleSheet, ScrollView, View, Text, Platform } from 'react-native';
+import { Button, Card } from 'react-native-elements';
+import { connect } from 'react-redux';
 
 class ReviewScreen extends Component {
 
@@ -16,24 +17,50 @@ class ReviewScreen extends Component {
                 />
             ),
             style: {
-                marginTop: Platform.OS === 'android' ? 24 : 0 
+                marginTop: Platform.OS === 'android' ? 24 : 0
             }
         }
     };
 
+    componentDidMount() {
+        console.log(this.props.likedJobs);
+    }
+
+    renderLikedJobs() {
+        return this.props.likedJobs.map(job => {
+            return (
+                <Card key={job.jobkey}>
+                    <View style={{ height: 200 }}>
+                        <View style={styles.detailWrapper}>
+                            <Text style={styles.italics}>{job.company}</Text>
+                            <Text style={styles.italics}>{job.formattedRelativeTime}</Text>
+                        </View>
+                    </View>
+                </Card>
+            );
+        });
+    }
+
     render() {
         return (
-            <View>
-                <Text>Review Screen</Text>
-                <Text>Review Screen</Text>
-                <Text>Review Screen</Text>
-                <Text>Review Screen</Text>
-                <Text>Review Screen</Text>
-                <Text>Review Screen</Text>
-                <Text>Review Screen</Text>
-            </View>
+            <ScrollView>
+                {this.renderLikedJobs()}
+            </ScrollView>
         );
     }
 };
 
-export default ReviewScreen;
+const styles = StyleSheet.create({
+    italics: { fontStyle: 'italic' },
+    detailWrapper: {
+        marginBottom: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    }
+});
+
+const mapStateToProps = ({ likedJobs }) => {
+    return { likedJobs };
+};
+
+export default connect(mapStateToProps)(ReviewScreen);
