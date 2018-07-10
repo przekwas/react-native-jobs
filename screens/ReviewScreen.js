@@ -30,16 +30,24 @@ class ReviewScreen extends Component {
     renderLikedJobs() {
         return this.props.likedJobs.map(job => {
 
-            const { company, formattedRelativeTime, jobkey } = job;
+            const {
+                company,
+                formattedRelativeTime,
+                jobkey,
+                longitude,
+                latitude,
+                jobtitle
+            } = job;
+
             const initialRegion = {
-                longitude: job.longitude,
-                latitude: job.latitude,
+                longitude: longitude,
+                latitude: latitude,
                 longitudeDelta: 0.02,
                 latitudeDelta: 0.045
             };
 
             return (
-                <Card key={jobkey}>
+                <Card title={jobtitle} key={jobkey}>
                     <View style={{ height: 200 }}>
                         <MapView
                             scrollEnabled={false}
@@ -74,6 +82,7 @@ class ReviewScreen extends Component {
 const styles = StyleSheet.create({
     italics: { fontStyle: 'italic' },
     detailWrapper: {
+        marginTop: 10,
         marginBottom: 10,
         flexDirection: 'row',
         justifyContent: 'space-around',

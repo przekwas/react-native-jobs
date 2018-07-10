@@ -65,7 +65,8 @@ const styles = StyleSheet.create({
     detailWrapper: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginBottom: 10
+        marginBottom: 10,
+        marginTop: 10
     }
 });
 
