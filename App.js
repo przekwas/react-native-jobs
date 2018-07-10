@@ -11,6 +11,8 @@ import DeckScreen from './screens/DeckScreen';
 import ReviewScreen from './screens/ReviewScreen';
 import SettingsScreen from './screens/SettingsScreen';
 
+import { Icon } from 'react-native-elements';
+
 export default class App extends React.Component {
   render() {
     return (
@@ -28,10 +30,17 @@ const RootStack = createBottomTabNavigator({
     screen: createBottomTabNavigator({
       map: { screen: MapScreen },
       deck: { screen: DeckScreen },
-      review: createStackNavigator({
-        review: { screen: ReviewScreen },
-        settings: { screen: SettingsScreen }
-      })
+      review: {
+        screen: createStackNavigator({
+          review: { screen: ReviewScreen },
+          settings: { screen: SettingsScreen }
+        }),
+        navigationOptions: {
+          tabBarIcon: ({ tintColor }) => {
+            return <Icon name="favorite" size={30} color={tintColor} />
+          }
+        }
+      }
     })
   }
 }, {
