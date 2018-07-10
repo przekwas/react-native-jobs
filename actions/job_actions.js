@@ -1,5 +1,5 @@
 import fakeData from '../fake_data';
-import { FETCH_JOBS, LIKE_JOB } from './types';
+import { FETCH_JOBS, LIKE_JOB, CLEAR_LIKED_JOBS } from './types';
 import reverseGeocode from 'latlng-to-zip';
 import qs from 'qs';
 import axios from 'axios';
@@ -43,4 +43,8 @@ export const fetchJobs = (region, callback) => {
 
 export const likeJob = (job) => {
     return { type: LIKE_JOB, payload: job };
+};
+
+export const clearLikedJobs = () => {
+    return { type: CLEAR_LIKED_JOBS };
 };
