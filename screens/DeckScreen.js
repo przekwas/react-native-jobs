@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Platform } from 'react-native';
-import { Card } from 'react-native-elements';
+import { Card, Button } from 'react-native-elements';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
@@ -39,9 +39,16 @@ class DeckScreen extends Component {
         );
     }
 
-    renderNoMoreCards() {
+    renderNoMoreCards = () => {
         return (
             <Card title='No More Jobs!'>
+                <Button
+                    title="Back to Map"
+                    large
+                    icon={{ name: "my-location" }}
+                    backgroundColor="#03A9F4"
+                    onPress={() => this.props.navigation.navigate('map')}
+                />
             </Card>
         );
     }

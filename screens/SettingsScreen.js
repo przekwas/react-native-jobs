@@ -7,7 +7,7 @@ import { clearLikedJobs } from '../actions';
 class SettingsScreen extends Component {
     render() {
         return (
-            <View>
+            <View style={{ marginTop: 30 }}>
                 <Button
                     title="Reset Liked Jobs!"
                     large
