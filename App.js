@@ -36,10 +36,17 @@ const RootStack = createBottomTabNavigator({
           settings: { screen: SettingsScreen }
         }),
         navigationOptions: {
+          title: 'Review Jobs',
           tabBarIcon: ({ tintColor }) => {
             return <Icon name="favorite" size={30} color={tintColor} />
           }
         }
+      }
+    }, {
+      //Android tabBar fix to bottom
+      tabBarPosition: 'bottom',
+      tabBarOptions: {
+        labelStyle: { fontSize: 12 }
       }
     })
   }
