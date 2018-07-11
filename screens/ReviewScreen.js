@@ -23,10 +23,6 @@ class ReviewScreen extends Component {
         }
     };
 
-    componentDidMount() {
-        console.log(this.props.likedJobs);
-    }
-
     renderLikedJobs() {
         return this.props.likedJobs.map(job => {
 
