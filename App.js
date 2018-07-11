@@ -1,8 +1,11 @@
 import React from 'react';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
-
+import registerForNotifications from './services/push_notifications';
+import { Icon } from 'react-native-elements';
 import store from './store';
+import { Notifications } from 'expo';
+import { Alert } from 'react-native';
 
 import AuthScreen from './screens/AuthScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
@@ -11,9 +14,24 @@ import DeckScreen from './screens/DeckScreen';
 import ReviewScreen from './screens/ReviewScreen';
 import SettingsScreen from './screens/SettingsScreen';
 
-import { Icon } from 'react-native-elements';
-
 export default class App extends React.Component {
+
+  componentDidMount() {
+    registerForNotifications();
+    Notifications.addListener((notification) => {
+
+      const { data: { text }, origin } = notification;
+
+      if (origin === 'received' && text) {
+        Alert.alert(
+          'New Push Notification',
+          text,
+          [{ text: 'Ok.' }]
+        )
+      }
+    });
+  }
+
   render() {
     return (
       <Provider store={store}>
@@ -43,12 +61,12 @@ const RootStack = createBottomTabNavigator({
         }
       }
     }, {
-      //Android tabBar fix to bottom
-      tabBarPosition: 'bottom',
-      tabBarOptions: {
-        labelStyle: { fontSize: 12 }
-      }
-    })
+        //Android tabBar fix to bottom
+        tabBarPosition: 'bottom',
+        tabBarOptions: {
+          labelStyle: { fontSize: 12 }
+        }
+      })
   }
 }, {
     lazy: true,
